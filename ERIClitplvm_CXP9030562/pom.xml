@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.ericsson.nms.litp</groupId>
+    <artifactId>ERIClitplvm_CXP9030562</artifactId>
+    <packaging>rpm</packaging>
+    <name>[${project.parent.artifactId}] RPM module</name>
+    <description>LITP lvm plugin</description>
+
+    <parent>
+        <groupId>com.ericsson.nms.litp</groupId>
+        <artifactId>ERIClitplvm</artifactId>
+        <version>1.1.12-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <!-- publishes the rpm module to the ci portal -->
+        <publish_artifact>true</publish_artifact>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>rpm-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <inherited>true</inherited>
+                <configuration>
+                    <requires>
+                        <require>python &gt;= 2.6</require>
+                        <require>ERIClitpcore_CXP9030418</require>
+                    </requires>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.ericsson.nms.litp</groupId>
+            <artifactId>ERIClitpcore_CXP9030418</artifactId>
+            <type>rpm</type>
+        </dependency>
+         <dependency>
+            <groupId>com.ericsson.nms.litp</groupId>
+            <artifactId>ERIClitplvmapi_CXP9030723</artifactId>
+            <type>rpm</type>
+        </dependency>
+   </dependencies>
+</project>
